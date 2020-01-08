@@ -1,0 +1,78 @@
+﻿@model Project.Models.DataDb
+@{
+
+}
+<h2>Manager Tools</h2>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h2>Add Dish</h2>
+    <div class="form-group">
+        <form id="form">
+            <div class="form-group">
+                <label for="pas">Category</label>
+                @Html.DropDownListFor(m => m.Dish.Category, new SelectList(Enum.GetValues(typeof(Project.Models.Categories))))
+                <div style="color:red">@Html.ValidationMessageFor(x => x.Dish.Category)</div>
+            </div>
+            <div class="form-group">
+                <label for="pas">Name</label>
+                @Html.TextBoxFor(m => m.Dish.Name, new { Class = "form-control" })
+                <div style="color:red">@Html.ValidationMessageFor(x => x.Dish.Name)</div>
+            </div>
+            <div class="form-group">
+                <label for="pas">Price</label>
+                @Html.TextBoxFor(m => m.Dish.Price, new { Class = "form-control" })
+                <div style="color:red">@Html.ValidationMessageFor(x => x.Dish.Price)</div>
+            </div>
+            <input id="submit1" class="btn btn-success" type="submit" value="Submit" />
+        </form>
+        <script>
+            $(document).ready(function () {
+                $("#submit1").click(function () {
+                    debugger
+                    var data = $("#form").serialize();
+
+                    $.post("AddDish", data, func);
+                })
+            })
+            function func(response) {
+                if (response.success)
+                    window.alert("Added");
+                else
+                    window.alert("Already In Database");
+            }
+        </script>
+    </div>
+    
+    <h2>Registered Members</h2>
+    <div style="display:'@Model.Status'" class="jumbotron">
+
+        @{
+            WebGrid obj = new WebGrid(Model.MembersList, rowsPerPage: 5, canPage: true);
+        }
+        @obj.GetHtml(tableStyle: "table table-bordered table-responsive table-hover",
+     headerStyle: "Grid-Header",
+     alternatingRowStyle: "Grid-alt",
+     selectedRowStyle: "Grid-selected",
+     rowStyle: "Grid-rowstyle",
+     footerStyle: "Grid-Footer",
+     mode: WebGridPagerModes.All,
+     columns:obj.Columns
+     (
+         obj.Column(columnName: "ID", header: "Member ID"),
+         obj.Column(columnName: "FirstName", header: "First Name"),
+         obj.Column(columnName: "LastName", header: "Last Name"),
+         obj.Column(columnName: "Phone", header: "Phone"),
+         obj.Column(columnName: "Joined", header: "Joined"),
+         obj.Column(columnName: "Points", header: "Points"),
+         obj.Column(columnName: "Expiration", header: "Expiration")
+         )
+     )
+    </div>
+</body>
+</html>

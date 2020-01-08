@@ -1,0 +1,57 @@
+﻿@model Project.Models.Member
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Member Registration</h2>
+
+<form id="form">
+    <div class="form-group">
+        <label for="usn">ID</label>
+        @Html.TextBoxFor(m => m.ID, new { Class = "form-control" })
+        <div style="color:red">@Html.ValidationMessageFor(x => x.ID)</div>
+    </div>
+    <div class="form-group">
+        <label for="pas">First Name</label>
+        @Html.TextBoxFor(m => m.FirstName, new { Class = "form-control" })
+        <div style="color:red">@Html.ValidationMessageFor(x => x.FirstName)</div>
+
+    </div>
+    <div class="form-group">
+        <label for="pas">Last Name</label>
+        @Html.TextBoxFor(m => m.LastName, new { Class = "form-control" })
+        <div style="color:red">@Html.ValidationMessageFor(x => x.LastName)</div>
+
+    </div>
+    <div class="form-group">
+        <label for="pas">Phone</label>
+        @Html.TextBoxFor(m => m.Phone, new { Class = "form-control" })
+        <div style="color:red">@Html.ValidationMessageFor(x => x.Phone)</div>
+    </div>
+    
+
+    <input id="submit1" class="btn btn-success" type="submit" value="Submit" />
+</form>
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#submit1").click(function () {
+            debugger
+            var data = $("#form").serialize();
+          
+            $.post("Submit", data, func);
+            
+        }) 
+    })
+    function func(response){
+        if (response.success)
+            window.alert("Added");
+        else
+            window.alert("Already In Database");
+    }
+</script>

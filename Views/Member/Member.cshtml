@@ -1,0 +1,29 @@
+﻿@model Project.Models.Member
+
+@{
+    ViewBag.Title = "Member";
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+
+<h2>Member Login</h2>
+
+@using (Html.BeginForm("MemberPage", "Member", FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="usn">ID</label>
+        @Html.TextBoxFor(m => m.ID, new { Class = "form-control" })
+        <div style="color:red">@Html.ValidationMessageFor(x => x.ID)</div>
+    </div>
+    <div class="form-group">
+        <label for="pas">Phone</label>
+        @Html.TextBoxFor(m => m.Phone, new { Class = "form-control" })
+        <div style="color:red">@Html.ValidationMessageFor(x => x.Phone)</div>
+    </div>
+    <div style="background-color:#E5E5E5"><p style="color:red">@ViewBag.ErrorMessage</p></div>
+    
+    <input id="submit1" class="btn btn-success" type="submit" value="Submit" />
+}

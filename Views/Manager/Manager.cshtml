@@ -1,0 +1,31 @@
+﻿@model Project.Models.Manager
+
+@{
+    ViewBag.Title = "Manager";
+}
+
+<script src="~/Scripts/jquery.validate.js"></script>
+
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("ManagerTools", "Manager", FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="usn">Username</label>
+        @Html.TextBoxFor(m => m.Username, new { Class = "form-control" })
+        <div style="color:red">@Html.ValidationMessageFor(x => x.Username)</div>
+    </div>
+    <div class="form-group">
+        <label for="pas">Password</label>
+        @Html.PasswordFor(m => m.Password, new { Class = "form-control" })
+        <div style="color:red">@Html.ValidationMessageFor(x => x.Password)</div>
+    </div>
+    <div style="background-color:#E5E5E5"><p style="color:red">@ViewBag.ErrorMessage</p></div>
+
+    <input id="submit1" class="btn btn-success" type="submit" value="Submit" />
+}
+

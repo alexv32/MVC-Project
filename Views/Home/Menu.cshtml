@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "Restuarant Menu";
+
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<h2 style="color:black">@ViewBag.Title:</h2>
+<h2>Starters</h2>
+
+<table class="table" id="tblStarters" style="background-color:#E5E5E5">
+    <tr>
+        <td style="color:blue">ID</td>
+        <td style="color:blue">Dish Name</td>
+        <td style="color:blue">Price</td>
+    </tr>
+
+</table>
+
+<h2 style="color:black">Main Dishes</h2>
+
+<table class="table" id="tblMain" style="background-color:#E5E5E5">
+    <tr>
+        <td style="color:blue">ID</td>
+        <td style="color:blue">Dish Name</td>
+        <td style="color:blue">Price</td>
+    </tr>
+    
+</table>
+
+<h2 style="color:black">Dessert</h2>
+
+<table class="table" id="tblDessert" style="background-color:#E5E5E5">
+    <tr>
+        <td style="color:blue">ID</td>
+        <td style="color:blue">Dish Name</td>
+        <td style="color:blue">Price</td>
+    </tr>
+   
+</table>
+
+<h2 style="color:black">Drinks</h2>
+
+<table class="table" id="tblDrink" style="background-color:#E5E5E5">
+    <tr>
+        <td style="color:blue">ID</td>
+        <td style="color:blue">Drink Name</td>
+        <td style="color:blue">Price</td>
+    </tr>
+</table>
+
+<script>
+    $.get("StarterData", null, StarterTable)
+    function StarterTable(data) {
+        var tbl = $("#tblStarters")
+        for (i = 0; i < data.length; i++) {
+            var row = "<tr>" +
+                "<td>" + data[i].ID + "</td>" +
+                "<td>" + data[i].Name + "</td>" +
+                "<td>" + data[i].Price + "</td>" + "</tr>";
+            tbl.append(row);
+        }
+        
+    }
+    $.get("MainData", null, MainTable)
+    function MainTable(data) {
+        var tbl = $("#tblMain")
+        for (i = 0; i < data.length; i++) {
+            var row = "<tr>" +
+                "<td>" + data[i].ID + "</td>" +
+                "<td>" + data[i].Name + "</td>" +
+                "<td>" + data[i].Price + "</td>" + "</tr>";
+            tbl.append(row);
+        }
+
+    }
+    $.get("DessertData", null, DessertTable)
+    function DessertTable(data) {
+        var tbl = $("#tblDessert")
+        for (i = 0; i < data.length; i++) {
+            var row = "<tr>" +
+                "<td>" + data[i].ID + "</td>" +
+                "<td>" + data[i].Name + "</td>" +
+                "<td>" + data[i].Price + "</td>" + "</tr>";
+            tbl.append(row);
+        }
+    }
+    $.get("DrinkData", null, DrinkTable)
+    function DrinkTable(data) {
+        var tbl = $("#tblDrink")
+        for (i = 0; i < data.length; i++) {
+            var row = "<tr>" +
+                "<td>" + data[i].ID + "</td>" +
+                "<td>" + data[i].Name + "</td>" +
+                "<td>" + data[i].Price + "</td>" + "</tr>";
+            tbl.append(row);
+        }
+    }
+</script>

@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    
+    <div class="page-header text-center" style="color:black">
+        <h1>Potato Tomato</h1>
+    </div>
+    <div class="jumbotron text-center">
+        <p class="lead">Welcome To our Restuarant Potato Tomato.</p>
+        <p>Here You Can Find Food And Even Some Drinks,</p>
+        <p>Come Hungry Leave Dissapointed.</p>
+    </div>
+
+    <div class="row" style="color:black">
+        <div class="col-md-4">
+            <form action="@Url.Action("Manager","Manager")" method="post">
+                <h2>Admin Login</h2>
+                <p>
+                    Move To Admin Login Page.
+                </p>
+                <input id="submit1" class="btn btn-success" type="submit" value="Login" />
+            </form>
+        </div>
+        <div class="col-md-4" style="color:black">
+            <form action="@Url.Action("Register","Home")" method="post">
+                <h2>Member Register</h2>
+                <p>Move To Member Register Page</p>
+                <input id="submit2" class="btn btn-success" type="submit" value="Register" />
+            </form>
+        </div>
+        <div class="col-md-4" style="color:black">
+            <form action="@Url.Action("Member","Member")" method="post">
+                <h2>Member Login</h2>
+                <p>Move To Member Login Page</p>
+                <input id="submit2" class="btn btn-success" type="submit" value="Login" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>
